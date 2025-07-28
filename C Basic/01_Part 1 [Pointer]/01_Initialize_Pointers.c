@@ -1,10 +1,9 @@
 # include <stdio.h>
 
 int main () {
-    int num;
+    int num, *ptr;
+    
     num = 20;
-
-    int *ptr;
     ptr = &num;
 
     printf("The value of num is: %d \n", *ptr);

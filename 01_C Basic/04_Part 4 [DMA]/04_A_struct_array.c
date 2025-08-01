@@ -8,31 +8,6 @@ typedef struct Student {
     int age;
 } student;
 
-// int main () {
-//     student *s[SIZE];
-//     int n;
-
-//     printf("How many student you want to add: ");
-//     scanf("%d", &n);
-//     getchar(); // consume newline left by scanf
-//     for (int i = 0; i < n; i++){
-//         s[i] = (student*)malloc(sizeof(student));
-//         printf("Enter your name: ");
-//         fgets(s[i]->name, sizeof(s[i]->name), stdin);
-
-//         printf("Enter your age: ");
-//         scanf("%d", &s[i]->age);
-//         getchar(); // consume newline left by scanf
-//     }
-
-//     for (int i = 0; i < n; i++) {
-//         printf("Your name: %s", s[i]->name);
-//         printf("Your age: %d\n", s[i]->age);
-//     }
-
-//     return 0;
-// }
-
 int main () {
     student *s[SIZE];
     int n;

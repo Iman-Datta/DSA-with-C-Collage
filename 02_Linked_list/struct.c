@@ -47,6 +47,26 @@ void insertEnd(int value) {
     }
 }
 
+void insertMiddle(int value, int position) {
+    if (position < 1){
+        printf("Invalid node position \n");
+        return;
+    }
+    if (position == 1){
+        insertBegining(value);
+    }
+    node *newNode = createNode(value);
+    node *temp = head;
+    for (int  i = 0; i < position - 1; i++){
+        if (temp ==  NULL){
+            printf("Invalid node position \n");
+            temp = temp->next;
+        }
+    }
+    
+     
+}
+
 void display() {
     node *temp = head;
     if (head == NULL) {
@@ -62,7 +82,7 @@ void display() {
 }
 
 int main () {
-    int choice, value;
+    int choice, value, position;
     while (1)
     {
         printf("\nPress 1: insert data at the starting\n");
@@ -88,7 +108,9 @@ int main () {
         case 3:
             printf("Enter the your data: ");
             scanf("%d", &value);
-            insertMiddle(value);
+            printf("Enter the number of node: ");
+            scanf("%d", &position);
+            insertMiddle(value, position);
             break;
         case 4:
             display();

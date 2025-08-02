@@ -47,27 +47,55 @@ void insertEnd(int value) {
     }
 }
 
+void display() {
+    node *temp = head;
+    if (head == NULL) {
+        printf("Your linked list is empty\n");
+        return;
+    }
+
+    printf("Your Linked List: \n");
+    while (temp != NULL){
+        printf("%d -->>", temp->data);
+        temp =  temp->next;
+    }
+}
+
 int main () {
     int choice, value;
-    printf("Press 1: insert data at the starting\n");
-    printf("Press 2: insert data at the end\n");
-    printf("Press 3: insert data at the middle\n");
-    printf("Press 4: Display\n");
-    scanf("%d", &choice);
-
-    switch (choice)
+    while (1)
     {
-    case 1:
-        printf("Enter the your data: ");
-        scanf("%d", &value);
-        Begining(value);
-        break;insert
-    case 2:
-        printf("Enter the your data: ");
-        scanf("%d", &value);
-        insertEnd(value);
-        break;
-    default:
-        break;
+        printf("\nPress 1: insert data at the starting\n");
+        printf("Press 2: insert data at the end\n");
+        printf("Press 3: insert data at the middle\n");
+        printf("Press 4: Display\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+    
+        switch (choice)
+        {
+        case 1:
+            printf("Enter the your data: ");
+            scanf("%d", &value);
+            insertBegining(value);
+            break;
+        case 2:
+            printf("Enter the your data: ");
+            scanf("%d", &value);
+            insertEnd(value);
+            break;
+        case 3:
+            printf("Enter the your data: ");
+            scanf("%d", &value);
+            insertMiddle(value);
+            break;
+        case 4:
+            display();
+            break;
+        default:
+            break;
+        }
     }
+    
 }

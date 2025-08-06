@@ -1,10 +1,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct Node{
+struct Node{
     int data;
     struct Node *next;
-} node;
+};
+typedef struct Node node; // Allias
+
+// typedef int apple; 
+// apple a;
 
 node *head = NULL;
 
@@ -47,28 +51,34 @@ void insertEnd(int value) {
     }
 }
 
-void insertMiddle(int value, int position) {
+void insertAtAnyNode(int value, int position) {
     if (position < 1){
-        printf("Invalid node position \n");
-        return;
+    printf("Invalid node position.\n");
+    return;
     }
+
     if (position == 1){
         insertBegining(value);
+        return;
     }
+
     node *newNode = createNode(value);
     node *temp = head;
-    for (int  i = 0; i < position - 1; i++){
-        if (temp ==  NULL){
-            printf("Invalid node position \n");
-            temp = temp->next;
+
+    for (int i = 1; i < position - 1; i++){
+        if (temp == NULL){
+            printf("Invalid node position. List is shorter than given position.\n");
+            return;
         }
+        temp = temp->next;
     }
-    
-     
+
+    newNode->next = temp->next;
+    temp->next = newNode;
 }
 
 void display() {
-    node *temp = head;
+    node *temp = head; 
     if (head == NULL) {
         printf("Your linked list is empty\n");
         return;
@@ -81,14 +91,30 @@ void display() {
     }
 }
 
+void deleteBeginning (){
+    if (head == NULL) {
+        printf("List is already empty.\n");
+
+        node* temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+
+void deleteEnd(){
+
+}
+
 int main () {
     int choice, value, position;
     while (1)
     {
         printf("\nPress 1: insert data at the starting\n");
         printf("Press 2: insert data at the end\n");
-        printf("Press 3: insert data at the middle\n");
+        printf("Press 3: insert data at any node\n");
         printf("Press 4: Display\n");
+        printf("Press 5: Delete from beginning\n");
+        printf("Press 6: Delete from end\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -110,10 +136,16 @@ int main () {
             scanf("%d", &value);
             printf("Enter the number of node: ");
             scanf("%d", &position);
-            insertMiddle(value, position);
+            insertAtAnyNode(value, position);
             break;
         case 4:
             display();
+            break;
+        case 5:
+            deleteBeginning();
+            break;
+        case 6:
+            deleteEnd();
             break;
         default:
             break;

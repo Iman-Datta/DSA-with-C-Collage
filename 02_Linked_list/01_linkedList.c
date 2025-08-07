@@ -151,6 +151,32 @@ void deleteAnyNode(int position) {
     free(temp);
 }
 
+void searchByValue(int val){
+    node *temp =  head;
+    int pos = 1, status = 0;
+
+    if (temp == NULL) {
+        printf("List is already empty.\n");
+    }
+
+    while (temp->next != NULL) {
+        if (temp->data == val) {
+            printf("Your data is found in %d node. The addrees of that node is %d \n", pos, temp->next);
+            status = 1;
+        }
+        pos ++;
+        temp = temp->next;
+    }
+    if (status == 0) {
+        printf ("Value %d not found in the list.\n", val);
+    }
+    
+}
+
+void searchByposition(int pos){
+
+}
+
 int main () {
     int choice, value, position;
     while (1)
@@ -197,6 +223,14 @@ int main () {
             printf("Enter the number of node: ");
             scanf("%d", &position);
             deleteAnyNode(position);
+        case 8:
+            printf("Enter your data: ");
+            scanf("%d", &value);
+            searchByValue(value);
+        case 9:
+            printf("Enter the node position: ");
+            scanf("%d", &position);
+            searchByposition(position);
         default:
             break;
         }

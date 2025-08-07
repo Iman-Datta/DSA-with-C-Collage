@@ -181,10 +181,11 @@ void searchByposition(int pos){
     }
 
     while (pos > 1) {
-
         temp = temp->next;
         pos --;
     }
+
+    printf("At %d number node: Your data is %d", pos, temp->data);
 }
 
 int main () {

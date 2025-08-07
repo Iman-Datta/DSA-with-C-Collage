@@ -174,7 +174,17 @@ void searchByValue(int val){
 }
 
 void searchByposition(int pos){
+    node *temp = head;
 
+    if (temp == NULL) {
+        printf ("List is already empty.\n");
+    }
+
+    while (pos > 1) {
+
+        temp = temp->next;
+        pos --;
+    }
 }
 
 int main () {

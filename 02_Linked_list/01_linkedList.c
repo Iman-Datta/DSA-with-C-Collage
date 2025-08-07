@@ -185,7 +185,7 @@ void searchByposition(int pos){
         pos --;
     }
 
-    printf("At %d number node: Your data is %d", pos, temp->data);
+    printf("At %d number node: Your data is %d \n", pos, temp->data);
 }
 
 int main () {
@@ -198,6 +198,9 @@ int main () {
         printf("Press 4: Display\n");
         printf("Press 5: Delete from beginning\n");
         printf("Press 6: Delete from end\n");
+        printf("Press 7: Delete at any node\n");
+        printf("Press 8: Search by value\n");
+        printf("Press 9: Search by position\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);

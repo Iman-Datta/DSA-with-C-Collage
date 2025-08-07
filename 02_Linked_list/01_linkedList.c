@@ -63,18 +63,16 @@ void insertAtAnyNode(int value, int position) {
     }
 
     node *newNode = createNode(value);
-    node *temp = head;
+    node *temp = head, *pre_temp = head;
 
-    for (int i = 1; i < position - 1; i++){
-        if (temp == NULL){
-            printf("Invalid node position. List is shorter than given position.\n");
-            return;
-        }
+    while(temp != NULL && position > 1) {
+        pre_temp = temp;
         temp = temp->next;
-    }
 
-    newNode->next = temp->next;
-    temp->next = newNode;
+        position --;
+    }
+    pre_temp->next = newNode;
+    newNode->next = temp;
 }
 
 void display() {
@@ -94,15 +92,63 @@ void display() {
 void deleteBeginning (){
     if (head == NULL) {
         printf("List is already empty.\n");
-
-        node* temp = head;
-        head = head->next;
-        free(temp);
+        return;
     }
+
+    node* temp = head;
+    head = head->next;
+    free(temp);
 }
 
 void deleteEnd(){
+    node *temp = head, *pre_temp = head;
+    if (temp == NULL) {
+        printf("List is already empty.\n");
+        return;
+    }
 
+        if (temp->next == NULL) {
+        free(temp);
+        head = NULL;
+        return;
+    }
+
+    while (temp->next != NULL){
+        pre_temp = temp;
+        temp = temp->next;
+    }
+
+    pre_temp->next = NULL;
+    free(temp);
+}
+
+void deleteAnyNode(int position) {
+    node *temp = head, *past =  head, *future = NULL;
+    if (temp == NULL) {
+        printf ("List is already empty.\n");
+        return;
+    }
+    
+    if (position < 1) {
+        printf("Invalid position");
+        return;
+    } 
+
+    if (position == 1) {
+        deleteBeginning(position);
+        return;
+    }
+
+    while (position > 1) {
+        past = temp;
+        temp = temp->next;
+
+        position --;
+    }
+
+    future = temp->next->next;
+    past->next = future;
+    free(temp);
 }
 
 int main () {
@@ -147,9 +193,12 @@ int main () {
         case 6:
             deleteEnd();
             break;
+        case 7:
+            printf("Enter the number of node: ");
+            scanf("%d", &position);
+            deleteAnyNode(position);
         default:
             break;
         }
     }
-    
 }

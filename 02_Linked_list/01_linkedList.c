@@ -1,7 +1,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-struct Node{
+typedef struct Node{
     int data;
     struct Node *next;
 };
@@ -10,10 +10,10 @@ typedef struct Node node; // Allias
 // typedef int apple; 
 // apple a;
 
-node *head = NULL;
+node *head = NULL; // Global
 
 node* createNode(int val){
-    node* newNode = (node*)malloc(sizeof(node));
+    node* newNode = (node *)malloc(sizeof(node));
 
     if (newNode == NULL) {
         printf("Memory allocation failed.\n");
@@ -189,6 +189,7 @@ void searchByposition(int pos){
 }
 
 int main () {
+    // node * head == NULL;
     int choice, value, position;
     while (1)
     {

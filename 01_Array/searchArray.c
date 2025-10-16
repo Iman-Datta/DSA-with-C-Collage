@@ -3,7 +3,7 @@
 
 int linearSearch(int *arr, int sz, int target) {
     for (int i = 0; i < sz; i++) {
-        if (*(arr + i) == target) {
+        if (*(arr + i) == target) { // arr[i] == target
             return i;
         }
     }

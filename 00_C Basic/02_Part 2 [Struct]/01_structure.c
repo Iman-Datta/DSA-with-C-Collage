@@ -11,7 +11,7 @@ int main() {
 
     emp1.id = 0;
     printf("Enter your name: ");
-    gets(emp1.name);
+    gets(emp1.name);  // gets is deprecrated
 
     printf("Enter your salary: ");
     scanf("%f", &emp1.salary);

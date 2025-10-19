@@ -192,7 +192,7 @@ int main () {
     // node * head == NULL;
     int choice, value, position;
     while (1)
-    {
+    { // Puts () should be use
         printf("\nPress 1: insert data at the starting\n");
         printf("Press 2: insert data at the end\n");
         printf("Press 3: insert data at any node\n");
@@ -251,3 +251,7 @@ int main () {
         }
     }
 }
+
+// 1. In a linked list, the head is a pointer (usually a struct type variable) that stores the address of the first node. The head itself doesn’t contain data; it only points to the first node.
+
+// 2. The last node contains data, but its pointer to the next node is set to NULL, indicating the end of the list.

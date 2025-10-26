@@ -7,7 +7,8 @@ struct employee {
 };
 
 int main() {
-    struct employee emp1;
+    struct employee emp1; 
+
 
     emp1.id = 0;
     printf("Enter your name: ");

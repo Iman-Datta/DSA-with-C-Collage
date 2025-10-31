@@ -1,57 +1,67 @@
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
+# include <stdlib.h>
 
-#define MAX_SIZE 5   // a. Maximum size of queue
+# define MAX 5
 
-int queue[MAX_SIZE];
-
+int queue[MAX];
 int front = -1, rear = -1;
 
-
-int isEmpty() { // Empty
-    return (front == -1);
+bool isEmpty(){
+    if (front == -1){
+        return true;
+    }
+    return false;
 }
 
-int isFull() { // Over Flow
-    return (rear == MAX_SIZE - 1);
+bool isFull(){
+    if (rear == MAX - 1){
+        return true;
+    }
+    return false;
 }
 
-void enqueue(int value) {
-    if (isFull()) {
-        printf("Queue is full. Cannot insert %d\n", value);
-    } else {
-        if (front == -1) {  // first element
+void enqueue(int val){
+    bool status = isFull();
+    if (status){
+        printf("Queue is full. Cannot insert %d\n", val);
+        return;
+    }
+    else {
+        if (front == -1){
             front = 0;
         }
-        rear++;
-        queue[rear] = value;
-        printf("%d inserted into queue\n", value);
+        queue[++rear] = val;
+        printf("%d inserted into queue\n", val);
     }
 }
 
-void dequeue() {
-    if (isEmpty()) {
-        printf("Queue is empty. Cannot dequeue.\n");
-    } else {
-        printf("%d removed from queue\n", queue[front]);
-        if (front == rear) { // For the last element
+void dequeue(){
+    bool status = isEmpty();
+    if(status) {
+        printf("Queue is empty");
+        return;
+    }
+    else{
+        if (front == rear){
             front = rear = -1;
-        } else {
-            front++;
+        }
+        else{
+            front ++;
         }
     }
 }
 
-void display() {
-    if (isEmpty()) {
-        printf("Queue is empty.\n");
-    } else {
-        printf("Queue elements: ");
-        for (int i = front; i <= rear; i++) {
-            printf("%d ", queue[i]);
-        }
-        printf("\n");
+void display(){
+    bool status = isEmpty();
+    if(status) {
+        printf("Queue is empty");
+        return;
     }
+    for (int i =  front; i <= rear; i++){
+        printf("%d \t", queue[i]);
+    }
+    printf("\n");
 }
 
 int main() {
@@ -100,6 +110,7 @@ int main() {
             case 6:
                 printf("Exiting program...\n");
                 exit(0);
+                break;
 
             default:
                 printf("Invalid choice! Try again.\n");

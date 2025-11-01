@@ -61,6 +61,36 @@ node* findMax(node* root){
     return root;
 }
 
+// Delete a node in BST
+node* deleteNode(node* root, int key){
+    if(root == NULL)
+        return NULL;
+
+    if(key < root->data)
+        root->left = deleteNode(root->left, key);
+    else if(key > root->data)
+        root->right = deleteNode(root->right, key);
+    else {
+        // Node with only one child or no child
+        if(root->left == NULL){
+            node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if(root->right == NULL){
+            node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // Node with two children
+        node* temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
 int main () {
     node* root = NULL;
     node* result;
@@ -73,7 +103,8 @@ int main () {
         printf("3. Inorder traversal\n");
         printf("4. Find Minimum\n");
         printf("5. Find Maximum\n");
-        printf("6. Exit\n");
+        printf("6. Delete node\n");
+        printf("7. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -113,6 +144,12 @@ int main () {
                     printf("BST is empty.\n");
                 break;
             case 6:
+                printf("Enter value to delete: ");
+                scanf("%d", &val);
+                root = deleteNode(root, val);
+                printf("%d deleted (if it existed) from BST.\n", val);
+                break;
+            case 7:
                 printf("Exiting program...\n");
                 exit(0);
             default:

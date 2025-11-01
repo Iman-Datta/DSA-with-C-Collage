@@ -45,6 +45,22 @@ void inorder(node* current){
     inorder(current->right);
 }
 
+// Preorder traversal
+void preorder(node* current){
+    if(current == NULL) return;
+    printf("%d ", current->data);
+    preorder(current->left);
+    preorder(current->right);
+}
+
+// Postorder traversal
+void postorder(node* current){
+    if(current == NULL) return;
+    postorder(current->left);
+    postorder(current->right);
+    printf("%d ", current->data);
+}
+
 // Find minimum
 node* findMin(node* root){
     if(root == NULL) return NULL;
@@ -91,20 +107,38 @@ node* deleteNode(node* root, int key){
     return root;
 }
 
+// Find Lowest Common Ancestor (LCA) in BST
+node* findLCA(node* root, int n1, int n2) {
+    if(root == NULL) return NULL;
+
+    if(n1 < root->data && n2 < root->data)
+        return findLCA(root->left, n1, n2);
+
+    if(n1 > root->data && n2 > root->data)
+        return findLCA(root->right, n1, n2);
+
+    return root;  // split point, root is LCA
+}
+
+// Main function with menu
 int main () {
     node* root = NULL;
     node* result;
-    int choice, val, key;
+    node* lca;
+    int choice, val, key, n1, n2;
 
     while(1){
         printf("\n--- BST MENU ---\n");
         printf("1. Insert node\n");
         printf("2. Search node\n");
         printf("3. Inorder traversal\n");
-        printf("4. Find Minimum\n");
-        printf("5. Find Maximum\n");
-        printf("6. Delete node\n");
-        printf("7. Exit\n");
+        printf("4. Preorder traversal\n");
+        printf("5. Postorder traversal\n");
+        printf("6. Find Minimum\n");
+        printf("7. Find Maximum\n");
+        printf("8. Delete node\n");
+        printf("9. Find LCA of two nodes\n");
+        printf("10. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -115,6 +149,7 @@ int main () {
                 root = insert(root, val);
                 printf("%d inserted successfully.\n", val);
                 break;
+
             case 2:
                 printf("Enter value to search: ");
                 scanf("%d", &key);
@@ -124,34 +159,62 @@ int main () {
                 else
                     printf("%d not found in BST.\n", key);
                 break;
+
             case 3:
                 printf("Inorder traversal: ");
                 inorder(root);
                 printf("\n");
                 break;
+
             case 4:
+                printf("Preorder traversal: ");
+                preorder(root);
+                printf("\n");
+                break;
+
+            case 5:
+                printf("Postorder traversal: ");
+                postorder(root);
+                printf("\n");
+                break;
+
+            case 6:
                 result = findMin(root);
                 if(result != NULL)
                     printf("Minimum value in BST: %d\n", result->data);
                 else
                     printf("BST is empty.\n");
                 break;
-            case 5:
+
+            case 7:
                 result = findMax(root);
                 if(result != NULL)
                     printf("Maximum value in BST: %d\n", result->data);
                 else
                     printf("BST is empty.\n");
                 break;
-            case 6:
+
+            case 8:
                 printf("Enter value to delete: ");
                 scanf("%d", &val);
                 root = deleteNode(root, val);
                 printf("%d deleted (if it existed) from BST.\n", val);
                 break;
-            case 7:
+
+            case 9:
+                printf("Enter two node values to find LCA: ");
+                scanf("%d %d", &n1, &n2);
+                lca = findLCA(root, n1, n2);
+                if(lca != NULL)
+                    printf("LCA of %d and %d is %d\n", n1, n2, lca->data);
+                else
+                    printf("LCA not found (one or both nodes may be missing).\n");
+                break;
+
+            case 10:
                 printf("Exiting program...\n");
                 exit(0);
+
             default:
                 printf("Invalid choice! Try again.\n");
         }

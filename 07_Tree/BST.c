@@ -27,14 +27,12 @@ node *insert(node *current, int val){
 }
 
 node *search(node* current, int key){
-    if(current == NULL){
+    if(current == NULL || current->data == key){
         return current;
     }
     if(key < current->data){
         return search(current->left, key);
     }
-    else if(key == current->data)
-        return current;
     else
         return search(current->right,key);
 }

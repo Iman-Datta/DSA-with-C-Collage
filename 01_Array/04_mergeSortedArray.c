@@ -30,8 +30,8 @@ void mergeSortedArray(int a[],int b[],int m, int n){
 }
 
 int main () {
-    int a[] = {1,2,3,0,0,0};
-    int b[] = {2,5,6};
+    int a[] = {3, 5, 6, 0, 0, 0};
+    int b[] = {1,2,3};
     int m = 3;
     int n = 3;
     

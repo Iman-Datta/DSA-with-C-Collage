@@ -15,7 +15,7 @@ void rearrange(int arr[], int n){
         else if (arr[left] < 0 && arr[right] < 0){ // both are -ve
             right --;
         }
-        else{ // left is -ve and right is +ve → swapl
+        else{ // left is -ve and right is +ve
             int temp = arr[right];
             arr[right] = arr[left];
             arr[left] = temp;

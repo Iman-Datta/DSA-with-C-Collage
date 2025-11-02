@@ -38,7 +38,7 @@ node *search(node* current, int key){
 }
 
 // Inorder traversal
-void inorder(node* current){
+void inorder(node* current){ // Left -> Root -> Right
     if(current == NULL) return;
     inorder(current->left);
     printf("%d ", current->data);
@@ -46,7 +46,7 @@ void inorder(node* current){
 }
 
 // Preorder traversal
-void preorder(node* current){
+void preorder(node* current){ // Root -> Left -> Right
     if(current == NULL) return;
     printf("%d ", current->data);
     preorder(current->left);
@@ -54,7 +54,7 @@ void preorder(node* current){
 }
 
 // Postorder traversal
-void postorder(node* current){
+void postorder(node* current){ //Left → Right → Root
     if(current == NULL) return;
     postorder(current->left);
     postorder(current->right);

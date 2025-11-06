@@ -6,6 +6,7 @@ typedef struct Node{
     struct Node *next;
 }node;
 
+// In case of linked list the head node is a global node
 node* head = NULL;
 
 node *createNode(int val){

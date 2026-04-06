@@ -1,86 +1,88 @@
-#include <stdio.h>
-#include <limits.h>
+# include <stdio.h>
+# include <limits.h>
 
-#define MAX 100
+# define MAX 100
 
-int max(int a, int b) {
-    return (a > b) ? a : b;
-}
+int max(int a, int b) {return (a > b ? a : b);}
+int min(int a, int b) {return (a < b ? a : b);}
 
-int secLargest(int arr[], int low, int high) {
-    if (low == high)
-        return INT_MIN;
+int secLargest(int arr[], int low, int high){
+    // For single element array
+    if(low == high) return INT_MIN;
 
-    if (high == low + 1)
-        return (arr[low] < arr[high]) ? arr[low] : arr[high];
+    // if only 2 element present in the array
+    if(high == low + 1) {return (arr[low] < arr[high] ? arr[low] : arr[high]);}
 
-    int mid = low + (high - low) / 2;
+    int mid = low + (high - low)/2;
 
-    int left = secLargest(arr, low, mid);
+    // Left array
+    int left = secLargest(arr,low,mid);
+    
+    // Right array
     int right = secLargest(arr, mid + 1, high);
 
-    int largestLeft = arr[low];
-    for (int i = low; i <= mid; i++)
-        if (arr[i] > largestLeft)
-            largestLeft = arr[i];
+    // Calculeate largest in the left array
+    int leftLargest = arr[low];
+    for(int i = low; i <= mid; i ++){
+        if(arr[i] > leftLargest) leftLargest = arr[i];
+    }
 
-    int largestRight = arr[mid + 1];
-    for (int i = mid + 1; i <= high; i++)
-        if (arr[i] > largestRight)
-            largestRight = arr[i];
+    // Calculate largest in the right array
+    int rightLargest = arr[mid+1];
+    for(int i = mid + 1; i <= high; i++){
+        if(arr[i] > rightLargest) rightLargest = arr[i];
+    }
 
-    if (largestLeft > largestRight)
-        return max(left, largestRight);
-    else
-        return max(right, largestLeft);
+    if(leftLargest > rightLargest) {return max(left, rightLargest);}
+    if(leftLargest < rightLargest) {return max(right, leftLargest);}
 }
 
-int min(int a, int b) {
-    return (a < b) ? a : b;
-}
+int secSmallest(int arr[], int low, int high){
+    // For single element array
+    if(low == high) return INT_MAX;
 
-int secSmallest(int arr[], int low, int high) {
-    if (low == high)
-        return INT_MAX;
+    // if only 2 element present in the array
+    if(high == low + 1) {return (arr[low] > arr[high] ? arr[low] : arr[high]);}
 
-    if (high == low + 1)
-        return (arr[low] > arr[high]) ? arr[low] : arr[high];
+    int mid = low + (high - low)/2;
 
-    int mid = low + (high - low) / 2;
-
-    int left = secSmallest(arr, low, mid);
+    // Left array
+    int left = secSmallest(arr,low,mid);
+    
+    // Right array
     int right = secSmallest(arr, mid + 1, high);
 
-    int smallestLeft = arr[low];
-    for (int i = low; i <= mid; i++)
-        if (arr[i] < smallestLeft)
-            smallestLeft = arr[i];
+    // Calculeate smallest in the left array
+    int leftSmallest = arr[low];
+    for(int i = low; i <= mid; i ++){
+        if(arr[i] < leftSmallest) leftSmallest = arr[i];
+    }
 
-    int smallestRight = arr[mid + 1];
-    for (int i = mid + 1; i <= high; i++)
-        if (arr[i] < smallestRight)
-            smallestRight = arr[i];
+    // Calculate smallest in the right array
+    int rightSmallest = arr[mid+1];
+    for(int i = mid + 1; i <= high; i++){
+        if(arr[i] < rightSmallest) rightSmallest = arr[i];
+    }
 
-    if (smallestLeft < smallestRight)
-        return min(left, smallestRight);
-    else
-        return min(right, smallestLeft);
+    if(leftSmallest < rightSmallest) {return min(left, rightSmallest);}
+    else {return min(right, leftSmallest);}
 }
 
-int main(){
+int main () {
     int arr[MAX];
     int n;
-    
-    printf("Enter the size of the array: ");
+
+    printf("Enter the number of element in your array: ");
     scanf("%d", &n);
 
-    printf("Enter the sorted array elements:\n");
+    printf("Enter the array elements:\n");
     for(int i =0; i< n; i++){
         printf("arr[%d]: ", i);
         scanf("%d", &arr[i]);
     }
-    printf("Second Largest = %d\n", secLargest(arr, 0, n - 1));
-    printf("Second Smallest = %d\n", secSmallest(arr, 0, n - 1));
+
+    printf("The 2nd largest element of your array is: %d\n", secLargest(arr, 0, n-1));
+    printf("The 2nd smallest element of your array is: %d\n", secSmallest(arr, 0, n-1));
 
     return 0;
 }

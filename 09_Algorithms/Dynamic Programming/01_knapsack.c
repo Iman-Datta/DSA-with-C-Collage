@@ -3,9 +3,7 @@
 
 #define MAX 100
 
-// --------------------------------------------------
-// Part 1: Recursive Approach
-// --------------------------------------------------
+
 int knapsackRecursive(int wt[], int val[], int n, int C) {
     // Base case
     if (n == 0 || C == 0)
@@ -24,9 +22,6 @@ int knapsackRecursive(int wt[], int val[], int n, int C) {
     return (include > exclude) ? include : exclude;
 }
 
-// --------------------------------------------------
-// Part 2: Top-Down Approach (Memoization)
-// --------------------------------------------------
 int dp[MAX][MAX];
 
 int knapsackMemo(int wt[], int val[], int n, int C) {
@@ -49,9 +44,6 @@ int knapsackMemo(int wt[], int val[], int n, int C) {
     return dp[n][C] = (include > exclude) ? include : exclude;
 }
 
-// --------------------------------------------------
-// Part 3: Bottom-Up Approach (Tabulation)
-// --------------------------------------------------
 int knapsackTabulation(int wt[], int val[], int n, int C) {
     int table[MAX][MAX];
 
